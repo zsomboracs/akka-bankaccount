@@ -30,7 +30,7 @@ class BankAccountSpec(_system: ActorSystem) extends TestKit(_system)
     expectMsg(BankAccount.Balance(10))
   }
 
-  it should "has reduced balance after withdraw when there is enough founds" in {
+  it should "has reduced balance after withdraw when there is enough funds" in {
     val bankAccount = system.actorOf(Props[BankAccount])
     deposit(bankAccount, 10)
     bankAccount ! BankAccount.Withdraw(5)
@@ -39,7 +39,7 @@ class BankAccountSpec(_system: ActorSystem) extends TestKit(_system)
     expectMsg(BankAccount.Balance(5))
   }
 
-  it should "should fail withdraw when there is not enough founds" in {
+  it should "should fail withdraw when there is not enough funds" in {
     val bankAccount = system.actorOf(Props[BankAccount])
     bankAccount ! BankAccount.Withdraw(5)
     expectMsg(BankAccount.Failed)

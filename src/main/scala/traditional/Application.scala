@@ -37,7 +37,7 @@ object Application extends App {
 
   accountA.deposit(20)
   transfer(accountA, accountB, 10)
-  println("account A balance: " + accountA.getBalance)
-  println("account B balance: " + accountB.getBalance)
+  println(s"account A balance: ${accountA.getBalance}")
+  println(s"account B balance: ${accountB.getBalance}")
 
 }

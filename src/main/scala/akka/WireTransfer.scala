@@ -2,7 +2,7 @@ package BankAccount
 
 import akka.actor.{Actor, ActorRef}
 
-object Transaction {
+object WireTransfer {
 
   case class Transfer(from: ActorRef, to: ActorRef, amount: Int)
 
@@ -12,9 +12,9 @@ object Transaction {
 
 }
 
-class Transaction extends Actor {
+class WireTransfer extends Actor {
 
-  import Transaction._
+  import WireTransfer._
 
   def receive = {
     case Transfer(from, to, amount) =>
