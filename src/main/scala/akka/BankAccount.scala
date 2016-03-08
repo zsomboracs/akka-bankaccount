@@ -29,7 +29,7 @@ class BankAccount extends Actor {
 
   var balance = 0
 
-  def receive = {
+  def receive() : Receive = {
 
     case GetBalance => sender ! Balance(balance)
 

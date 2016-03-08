@@ -15,7 +15,7 @@ object Client {
 
 class Client extends Actor {
 
-  var originalSender = ActorRef.noSender
+  var originalSender: ActorRef = _
 
   val hcomAccount = context.actorOf(Props[BankAccount], "hcomAcc")
   val epamAccount = context.actorOf(Props[BankAccount], "epamAcc")
@@ -31,8 +31,8 @@ class Client extends Actor {
   def awaitDeposit(): Receive = {
     case BankAccount.Done =>
       println("Deposit done.")
-      val transfer = context.actorOf(Props[WireTransfer], "transfer")
       context.become(awaitTransfer)
+      val transfer = context.actorOf(Props[WireTransfer], "transfer")
       transfer ! Transfer(hcomAccount, epamAccount, 60000)
   }
 
